@@ -1,0 +1,21 @@
+@import '../../../sass/variables';
+
+.card {
+  min-height: 96px;
+  background-color: $white;
+  box-shadow: $box-shadow;
+
+  &-stat, &-title {
+    font-weight: 600;
+    color: $black;
+  }
+
+  &-title {
+    font-size: 16px;
+  }
+
+  &-stat {
+    margin: 10px 0 0;
+    font-size: 18px;
+  }
+}

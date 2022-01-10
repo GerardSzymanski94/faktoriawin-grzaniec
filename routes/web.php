@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use \App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,11 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::name('admin.')->prefix('administracja')->group(function () {
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/home', [AdminController::class, 'home'])->name('home');
+    });
+});

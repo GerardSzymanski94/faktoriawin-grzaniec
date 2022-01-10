@@ -1,0 +1,78 @@
+@import "./variables";
+
+body {
+  background-color: rgba(248, 175, 51, .2);
+}
+
+
+a {
+  color: $black;
+
+  &:hover {
+    color: darken($black, 5%);
+  }
+}
+
+.main-content {
+  min-height: 100vh;
+  padding: 0 0 120px;
+}
+
+.close-mobile {
+  @media screen and (max-width: 767.98px) {
+    display: none;
+  }
+}
+
+.close-desktop {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.btn-primary {
+  border-color: $orange;
+  background-color: $orange;
+  box-shadow: 0 0 8px darken($orange-opacity, 10%);
+
+  &.outline {
+    background-color: $white;
+    border: 1px solid $orange;
+    color: $orange;
+  }
+
+  &.outline:hover {
+    color: $white;
+  }
+
+  &:hover, &:active, &:focus {
+    border-color: darken($orange, 5%)!important;
+    background-color: darken($orange, 5%)!important;
+    box-shadow: 0 0 1px darken($orange, 5%)!important;
+  }
+}
+
+.btn-right {
+  margin: 0 0 0 auto;
+}
+
+.btn-left {
+  margin: 0 auto 0 0;
+}
+
+.icon-color {
+  color: $orange;
+}
+
+.admin-layouts-footer, footer {
+  width: 100%;
+  padding: 48px 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.admin-layouts-footer {
+  background-color: $white;
+  box-shadow: $box-top-shadow !important;
+}
