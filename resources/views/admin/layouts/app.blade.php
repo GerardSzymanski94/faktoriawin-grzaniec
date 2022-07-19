@@ -7,7 +7,6 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Admin') }}</title>
     <!-- Favicon -->
     <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -20,9 +19,17 @@
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
 
-    {{--<link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
-    <script src="{{ asset('js/app.js') }}" defer>
-    </script>
+    <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- Scripts -->
+    @routes
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="">
 @auth()
@@ -32,13 +39,14 @@
     @include('admin.layouts.navbars.sidebar')
 @endauth
 
-<div class="main-content" id="app">
+<div class="main-content">
+    <div id="app">
 
-    @include('admin.layouts.navbars.navbar')
+        @include('admin.layouts.headers.cards')
 
-    @yield('content')
-
-
+        @include('admin.layouts.navbars.navbar')
+        @inertia
+    </div>
 </div>
 
 @guest()
@@ -51,6 +59,6 @@
 @stack('js')
 
 <!-- Argon JS -->
-{{--<script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>--}}
+<script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 </body>
 </html>

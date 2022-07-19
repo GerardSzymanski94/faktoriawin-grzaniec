@@ -5,12 +5,10 @@
         <jet-banner/>
 
         <div class="min-h-screen bg-gray-100">
-            <top></top>
-            <div style="display: flex">
-                <sidebar></sidebar>
+            <div class="flex justify-center">
 
                 <!-- Page Content -->
-                <div style="float: left; width: 100%;">
+                <div style="width: 50%;">
                     <slot></slot>
                 </div>
             </div>
@@ -40,8 +38,6 @@ export default defineComponent({
 
     },
 
-    methods: {
-
-    }
+    methods: {}
 })
 </script>
