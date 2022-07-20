@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use \App\Http\Controllers\Admin\AdminController;
+use \App\Http\Controllers\RegisterController;
+use \App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +18,14 @@ use \App\Http\Controllers\Admin\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
-
+Route::name('register.')->prefix('register')->group(function () {
+    Route::post('/store', [RegisterController::class, 'store'])->name('store');
+});
 Route::name('admin.')->prefix('administracja')->group(function () {
 
     Route::group(['middleware' => 'auth'], function () {
