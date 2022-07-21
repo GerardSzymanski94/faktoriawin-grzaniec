@@ -103,7 +103,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja'">
+                        <a class="nav-link" :href="'/administracja/stats'">
                             <i class="ni ni-tv-2 text-primary"></i> Statystyki
                         </a>
                     </li>

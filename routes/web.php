@@ -50,6 +50,9 @@ Route::name('admin.')->prefix('administracja')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\SiteConfigController::class, 'index'])->name('index');
             Route::post('/store', [\App\Http\Controllers\Admin\SiteConfigController::class, 'store'])->name('store');
         });
+        Route::name('stats.')->prefix('stats')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\StatsController::class, 'index'])->name('index');
+        });
 
     });
 });
