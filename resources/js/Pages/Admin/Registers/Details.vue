@@ -208,7 +208,7 @@
                             {{ mail.subject }}
                         </td>
                         <td>
-                            <a :href="'administracja/mail/'+mail.id" class="btn btn-primary" target="_blank">PODGLĄD</a>
+                            <a :href="'/administracja/mail/show/'+mail.id" class="btn btn-primary" target="_blank">PODGLĄD</a>
                         </td>
                     </tr>
 
