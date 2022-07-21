@@ -46,6 +46,10 @@ Route::name('admin.')->prefix('administracja')->group(function () {
             Route::get('/all', [\App\Http\Controllers\Admin\ExportController::class, 'all'])->name('all');
             Route::get('/winners', [\App\Http\Controllers\Admin\ExportController::class, 'winners'])->name('winners');
         });
+        Route::name('config.')->prefix('config')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\SiteConfigController::class, 'index'])->name('index');
+            Route::post('/store', [\App\Http\Controllers\Admin\SiteConfigController::class, 'store'])->name('store');
+        });
 
     });
 });

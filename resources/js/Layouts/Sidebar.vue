@@ -112,6 +112,11 @@
                             <i class="ni ni-tv-2 text-primary"></i> Zwycięzcy
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" :href="'/administracja/config'">
+                            <i class="ni ni-tv-2 text-primary"></i> Konfiguracja konkursu
+                        </a>
+                    </li>
 <!--                    <li class="nav-item">
                         <a class="nav-link" :href="'/administracja'">
                             <i class="ni ni-tv-2 text-primary"></i> Export

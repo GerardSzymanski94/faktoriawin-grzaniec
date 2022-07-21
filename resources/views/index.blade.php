@@ -34,18 +34,22 @@
     <div class="alert alert-danger">Uzupełnij wszystkie pola</div>
 @endif
 
+@if($showForm)
 
-<form action="{{ route('register.store') }}" method="post">
-    @csrf
-    Data: <input name="bill_date" type="datetime-local" value="{{ old('bill_date') }}"><br>
-    Numer: <input name="bill_number" type="text" value="{{ old('bill_number') }}"><br>
-    Email: <input name="email" type="email" value="{{ old('email') }}"><br>
-    <div class="h-captcha" name="captcha"
-         data-sitekey="90777a29-d501-4e65-a2ba-81af5303ca77"></div>
-    <br>
-    <input type="submit">
-</form>
+    <form action="{{ route('register.store') }}" method="post">
+        @csrf
+        Data: <input name="bill_date" type="datetime-local" value="{{ old('bill_date') }}"><br>
+        Numer: <input name="bill_number" type="text" value="{{ old('bill_number') }}"><br>
+        Email: <input name="email" type="email" value="{{ old('email') }}"><br>
+        <div class="h-captcha" name="captcha"
+             data-sitekey="90777a29-d501-4e65-a2ba-81af5303ca77"></div>
+        <br>
+        <input type="submit">
+    </form>
 
+@else
+    <h1>Ni ma</h1>
+@endif
 
 <br>
 <p>kontakt</p>
