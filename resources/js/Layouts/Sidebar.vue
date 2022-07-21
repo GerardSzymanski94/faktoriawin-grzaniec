@@ -98,7 +98,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja'">
+                        <a class="nav-link" :href="'/administracja/mail/all'">
                             <i class="ni ni-tv-2 text-primary"></i> Wysłane maile
                         </a>
                     </li>
@@ -112,11 +112,11 @@
                             <i class="ni ni-tv-2 text-primary"></i> Zwycięzcy
                         </a>
                     </li>
-                    <li class="nav-item">
+<!--                    <li class="nav-item">
                         <a class="nav-link" :href="'/administracja'">
                             <i class="ni ni-tv-2 text-primary"></i> Export
                         </a>
-                    </li>
+                    </li>-->
 
                 </ul>
                 <!-- Divider -->
