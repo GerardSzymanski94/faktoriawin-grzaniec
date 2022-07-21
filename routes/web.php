@@ -33,7 +33,11 @@ Route::name('mail.')->prefix('mail')->group(function () {
 Route::name('admin.')->prefix('administracja')->group(function () {
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/', [\App\Http\Controllers\Admin\RegisterController::class, 'index']);
+        Route::get('/show/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'show'])->name('show');
+        Route::get('/winner/{register}/{prize}', [\App\Http\Controllers\Admin\RegisterController::class, 'winner'])->name('winner');
         Route::get('/home', [AdminController::class, 'home'])->name('home');
+
+
     });
 });

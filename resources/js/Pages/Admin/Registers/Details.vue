@@ -1,0 +1,255 @@
+<template>
+    <AppLayout>
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="mb-0">Szczegóły zgłoszenia</h3>
+                    </div>
+
+                    <div class="col text-right">
+                        <a href="javascript:history.back()" class="btn btn-sm btn-primary"> Wstecz</a>
+                    </div>
+                    <!--<div class="col text-right">
+                        <a :href="url+'/administracja/edit/'+register.id" class="btn btn-sm btn-success">Edytuj</a>
+                    </div>-->
+                </div>
+            </div>
+            <div class="table-responsive">
+                <!-- Projects table -->
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Dane zgłoszenia</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <th scope="row">
+                            Email
+                        </th>
+                        <td>
+                            {{ register.email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Numer paragonu
+                        </th>
+                        <td>
+                            {{ register.bill_number }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            Data paragonu
+                        </th>
+                        <td>
+                            {{ register.bill_date }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Odpowiedź
+                        </th>
+                        <td>
+                            {{ register.description }}
+                        </td>
+                    </tr>
+
+
+                    <tr v-if="register.mail_send==1">
+                        <td>Mail wysłany</td>
+                        <td v-if="register.prize ==1 ">Nagroda główna</td>
+                        <td v-if="register.prize ==2 ">Nagroda 1. stopnia</td>
+                        <td v-if="register.prize ==3 ">Nagroda 2. stopnia</td>
+                        <td v-if="register.prize ==4 ">Nagroda 3. stopnia</td>
+                    </tr>
+                    <tr v-else>
+                        <th scope="row">
+                            Oznacz jako zwycięzce i wyślij email
+                        </th>
+                        <td>
+                            <a :href="'/administracja/winner/'+register.id+'/1'" class="btn-primary btn-sm">Nagroda
+                                Główna</a>
+                        </td>
+                        <td>
+                            <a :href="'/administracja/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda I
+                                stopnia</a>
+                        </td>
+                        <td>
+                            <a :href="'/administracja/winner/'+register.id+'/3'" class="btn-primary btn-sm">Nagroda
+                                II
+                                stopnia</a>
+                        </td>
+                        <td>
+                            <a :href="'/administracja/winner/'+register.id+'/4'" class="btn-primary btn-sm">Nagroda
+                                III
+                                stopnia</a>
+                        </td>
+                        <td v-if="register.mail_send==2">
+                            Nastąpił problem przy próbie wysyłki maila. Spróbuj ponownie
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="table-responsive" v-if="register.bill_photo != null">
+                <!-- Projects table -->
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Dane zwycięzcy do weryfikacji</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr v-if="register.bill_photo != null">
+                        <td>
+                            Zdjęcie paragonu
+                        </td>
+                        <td>
+                            <img style="max-width: 100%" v-bind:src="this.url+'storage/'+register.bill_photo">
+                        </td>
+                    </tr>
+                    <tr v-if="register.bill_photo != null">
+                        <td>
+                            Akceptacja
+                        </td>
+                        <td>
+                            <a href="" class="btn-sm btn-primary">Zaakceptuj</a>
+                            <a href="" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
+                        </td>
+                    </tr>
+                    <tr v-if="register.name != null">
+                        <td>
+                            Imię
+                        </td>
+                        <td>
+                            {{ register.name }}
+                        </td>
+                    </tr>
+                    <tr v-if="register.lastname != null">
+                        <td>
+                            Nazwisko
+                        </td>
+                        <td>
+                            {{ register.lastname }}
+                        </td>
+                    </tr>
+                    <tr v-if="register.city != null">
+                        <td>
+                            Adres
+                        </td>
+                        <td>
+                            {{ register.city }} {{ register.zip_code }}, {{ register.street }}
+                        </td>
+                    </tr>
+
+
+                    <tr v-if="register.account_number != null">
+                        <td>
+                            Nr konta
+                        </td>
+                        <td>
+                            {{ register.account_number }}
+                        </td>
+                    </tr>
+                    <tr v-else-if="register.status == 1">
+                        <td>
+                            Potwierdź
+                        </td>
+                        <td>
+                            Potwierdzony jako zwycięzca
+                        </td>
+
+                    </tr>
+                    <tr v-else-if="register.status ==2">
+                        <td>
+                            Potwierdź
+                        </td>
+                        <td>
+                            Odrzucony
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="table-responsive">
+                <!-- Projects table -->
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Maile wysłane do użytkownika</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr v-for="mail in mails">
+                        <th scope="row">
+                            {{ mail.created_at }}
+                        </th>
+                        <td>
+                            {{ mail.subject }}
+                        </td>
+                        <td>
+                            <a :href="'administracja/mail/'+mail.id" class="btn btn-primary" target="_blank">PODGLĄD</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </AppLayout>
+</template>
+
+<script>
+
+import {Head} from "@inertiajs/inertia-vue3";
+import AppLayout from "../../../Layouts/AppLayout";
+
+export default {
+    components: {
+        Head,
+        AppLayout
+    },
+    props: {
+        register: Array,
+        mails: Array
+    },
+    data() {
+        return {
+            url: "",
+        }
+
+    },
+    created() {
+        const p = new Promise((resolve, reject) => {
+
+        })
+            .then(result => console.log(`Success ${result}`))
+            .catch(result => console.log(`Error ${result}`));
+
+        this.url = process.env.MIX_APP_URL;
+    }
+}
+
+</script>
+

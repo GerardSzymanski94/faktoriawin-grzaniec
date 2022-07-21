@@ -93,8 +93,28 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" :href="this.url+'/'">
-                            <i class="ni ni-tv-2 text-primary"></i> Zakładka
+                        <a class="nav-link" :href="'/administracja'">
+                            <i class="ni ni-tv-2 text-primary"></i> Zgłoszenia
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" :href="'/administracja'">
+                            <i class="ni ni-tv-2 text-primary"></i> Wysłane maile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" :href="'/administracja'">
+                            <i class="ni ni-tv-2 text-primary"></i> Statystyki
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" :href="'/administracja'">
+                            <i class="ni ni-tv-2 text-primary"></i> Zwycięzcy
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" :href="'/administracja'">
+                            <i class="ni ni-tv-2 text-primary"></i> Export
                         </a>
                     </li>
 

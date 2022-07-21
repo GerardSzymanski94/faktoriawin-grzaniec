@@ -21,6 +21,6 @@ class SendMail extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->addHour();
+        return Carbon::parse($value)->addHour()->format('Y-m-d H:i');
     }
 }

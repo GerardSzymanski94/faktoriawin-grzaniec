@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +16,13 @@ class Register extends Model
         'expiration_date', 'shop', 'ip_address'];
 
 
+    public function mails()
+    {
+        return $this->hasMany(SendMail::class);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->addHour()->format('Y-m-d H:i');
+    }
 }
