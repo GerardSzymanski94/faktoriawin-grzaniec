@@ -13,7 +13,7 @@ class Register extends Model
     protected $fillable = ['name', 'lastname', 'description', 'email', 'phone', 'photo', 'status', 'type',
         'bill_number', 'bill_date', 'bill_nip', 'code', 'prize', 'bill_photo', 'account_number', 'city', 'street',
         'zip_code', 'mail_send', 'document_pesel', 'document_number', 'document_type', 'parental_name', 'parental_consent', 'is_eighteen',
-        'expiration_date', 'shop', 'ip_address'];
+        'expiration_date', 'shop', 'ip_address', 'reward_id'];
 
 
     public function mails()

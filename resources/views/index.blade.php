@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="js/airdatepicker/css/datepicker.css" type="text/css"/>
 </head>
 <body>
+@if(session('winner'))
+    <div class="alert alert-success">Wygrałeś !!!</div>
+@endif
 @if(session('success'))
     <div class="alert alert-success">Udało się</div>
 @endif

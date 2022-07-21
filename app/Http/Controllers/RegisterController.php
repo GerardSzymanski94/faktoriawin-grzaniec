@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Mail\ContactMail;
 use App\Mail\WinnerMail;
+use App\Models\InstantReward;
 use App\Models\Register;
 use App\Repositories\RegisterRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -23,7 +25,7 @@ class RegisterController extends Controller
 
         try {
             $repo = new RegisterRepository();
-            $repo->create([
+            $register = $repo->create([
                 'email' => $request->email,
                 'bill_number' => $request->bill_number,
                 'bill_date' => $request->bill_date,
@@ -33,6 +35,12 @@ class RegisterController extends Controller
             return redirect()->to('/#form')->with(['save-error' => true]);
         }
 
+        //sprawdzamy czy gracz jest najbliższej wygrawającego czasu i zwracamy odpowiedni numer nagrody i animacji
+        $reward = $this->checkReward($register);
+
+        if ($reward > 0) {
+            return redirect()->to('/#form')->with(['winner' => true]);
+        }
 
         return redirect()->to('/#form')->with(['success' => true]);
 
@@ -85,4 +93,48 @@ class RegisterController extends Controller
         return $ip;
     }
 
+
+    private function checkReward($user)
+    {
+        $reward = InstantReward::whereStatus(1)->first();
+        if (!isset($reward->id)) {
+            return 0;
+        }
+        $rewardDate = Carbon::createFromDate($reward->time)->subHours(2)->format('Y-m-d H:i:s');
+
+        $register = Register::where('created_at', '>=', $rewardDate)->whereNull('reward_id')->first();
+        if (isset($register->id)) {
+            if ($register->id == $user->id) {
+                $user->reward_id = $reward->id;
+                $user->prize = $reward->type;
+                $user->code = $this->generateCode(15);
+                $user->save();
+
+                $reward->status = 2;
+                $reward->save();
+
+                //$this->sendMail($user);
+                return $reward->type;
+            } else {
+
+                //$this->sendMailDefeat($user);
+                return 0;
+            }
+        } else {
+
+            //$this->sendMailDefeat($user);
+            return 0;
+        }
+    }
+
+    private function generateCode($length = 10): string
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 }
