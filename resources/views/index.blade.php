@@ -25,7 +25,7 @@
     <div class="alert alert-danger">Zaznacz pole Captcha</div>
 @endif
 @if(session('bill-error'))
-    <div class="alert alert-danger">Paragon już  użyty</div>
+    <div class="alert alert-danger">Paragon już użyty</div>
 @endif
 @if($errors->any())
     <div class="alert alert-danger">Uzupełnij wszystkie pola</div>
@@ -43,6 +43,21 @@
     <input type="submit">
 </form>
 
+
+<br>
+<p>kontakt</p>
+@if(session('contact'))
+    <div class="alert alert-success">Udało się</div>
+@endif
+@if(session('contact-error'))
+    <div class="alert alert-danger">Nie udało się wysłać maila</div>
+@endif
+<form action="{{ route('mail.contact') }}" method="post">
+    @csrf
+    Treść: <textarea name="message">{{ old('message') }}</textarea><br>
+    Email: <input name="email" type="email" value="{{ old('email') }}"><br>
+    <input type="submit">
+</form>
 <!-- START Bootstrap-Cookie-Alert -->
 <div class="alert text-center cookiealert" role="alert">
     <b>W ramach naszej strony stosujemy wyłącznie niezbędne pliki cookies, aby świadczyć usługi na najwyższym poziomie.

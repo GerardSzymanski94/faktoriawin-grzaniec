@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use \App\Http\Controllers\Admin\AdminController;
 use \App\Http\Controllers\RegisterController;
 use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\SendMailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 Route::name('register.')->prefix('register')->group(function () {
     Route::post('/store', [RegisterController::class, 'store'])->name('store');
+});
+Route::name('mail.')->prefix('mail')->group(function () {
+    Route::post('/contact', [SendMailController::class, 'contact'])->name('contact');
 });
 Route::name('admin.')->prefix('administracja')->group(function () {
 

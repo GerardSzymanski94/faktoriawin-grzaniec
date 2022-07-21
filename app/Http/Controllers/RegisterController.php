@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Mail\ContactMail;
+use App\Mail\WinnerMail;
 use App\Models\Register;
 use App\Repositories\RegisterRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -34,6 +37,7 @@ class RegisterController extends Controller
         return redirect()->to('/#form')->with(['success' => true]);
 
     }
+
 
     private function checkCaptcha($token)
     {
