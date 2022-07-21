@@ -40,6 +40,7 @@ Route::name('admin.')->prefix('administracja')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::name('mail.')->prefix('mail')->group(function () {
             Route::get('/show/{mail}', [\App\Http\Controllers\Admin\SendMailController::class, 'show'])->name('show');
+            Route::get('/all', [\App\Http\Controllers\Admin\SendMailController::class, 'all'])->name('all');
         });
         Route::name('export.')->prefix('export')->group(function () {
             Route::get('/all', [\App\Http\Controllers\Admin\ExportController::class, 'all'])->name('all');

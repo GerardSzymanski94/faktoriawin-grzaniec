@@ -15,4 +15,11 @@ class SendMailController extends Controller
             'mail' => $mail,
         ]);
     }
+
+    public function all()
+    {
+        return Inertia::render('Admin/Mails/List', [
+            'mails' => SendMail::all(),
+        ]);
+    }
 }
