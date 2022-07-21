@@ -4,7 +4,7 @@
             <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="mb-0">Wszystkie zgłoszenia</h3>
+                        <h3 class="mb-0">{{ title }}</h3>
                     </div>
                     <div class="col text-right">
                         <a v-bind:href="'/administracja/export'" class="btn btn-sm btn-success">Export</a>
@@ -20,6 +20,7 @@
                     <thead class="thead-light">
                     <tr>
                         <th scope="col">Status</th>
+                        <th scope="col">Nagroda</th>
                         <th scope="col">ID</th>
                         <th scope="col">Email</th>
                         <th scope="col">Numer paragonu</th>
@@ -53,7 +54,8 @@ export default {
         Head,
         AppLayout
     }, props: {
-        registers: Array
+        registers: Array,
+        title: String
     },
     data() {
         return {

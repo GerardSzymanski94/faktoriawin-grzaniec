@@ -15,6 +15,15 @@ class RegisterController extends Controller
     {
         return Inertia::render('Admin/Registers/List', [
             'registers' => Register::all(),
+            'title' => "Wszystkie zgłoszenia",
+        ]);
+    }
+
+    public function winners()
+    {
+        return Inertia::render('Admin/Registers/List', [
+            'registers' => Register::whereNotNull('prize')->get(),
+            'title' => "Zwycięzcy",
         ]);
     }
 

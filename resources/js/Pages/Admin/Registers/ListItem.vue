@@ -1,7 +1,14 @@
 <template>
     <tr>
         <th scope="row">
-            Brak
+            <span v-if="status == 1" class="text-red">Niepotwierdzony</span>
+            <span v-else-if="status == 2" class="text-green">Potwierdzony</span>
+            <span v-else>Brak</span>
+        </th>
+        <th scope="row">
+            <span v-if="prize == 1" class="text-green">Nagroda I</span>
+            <span v-else-if="prize == 2" class="text-green">Nagroda II</span>
+            <span v-else>Brak</span>
         </th>
         <th scope="row">
             {{ id }}
@@ -19,7 +26,7 @@
             {{ created_at }}
         </td>
         <td>
-            <a class="btn-sm btn-primary" v-bind:href="'administracja/show/'+id">Szczegóły</a>
+            <a class="btn-sm btn-primary" v-bind:href="'/administracja/show/'+id">Szczegóły</a>
         </td>
 
     </tr>
@@ -35,7 +42,9 @@ export default {
         bill_date: String,
         type: Number,
         prize: Number,
+        prize_name: String,
         status: Number,
+        status_name: String,
         created_at: Date,
         id: Number,
     },

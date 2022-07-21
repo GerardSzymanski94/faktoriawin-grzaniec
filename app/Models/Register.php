@@ -25,4 +25,22 @@ class Register extends Model
     {
         return Carbon::parse($value)->addHour()->format('Y-m-d H:i');
     }
+    public function getStatusNameAttribute($value)
+    {
+        switch ($value){
+            case 0: return "brak";
+            case null: return "brak";
+            case 1: return "Potwierdzony";
+            case 2: return "Niepotwierdzony";
+        }
+    }
+    public function getPrizeNameAttribute($value)
+    {
+        switch ($value){
+            case 0: return "brak";
+            case null: return "brak";
+            case 1: return "Nagroda I";
+            case 2: return "Nagroda II";
+        }
+    }
 }
