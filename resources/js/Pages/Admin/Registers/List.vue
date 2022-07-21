@@ -7,7 +7,10 @@
                         <h3 class="mb-0">{{ title }}</h3>
                     </div>
                     <div class="col text-right">
-                        <a v-bind:href="'/administracja/export'" class="btn btn-sm btn-success">Export</a>
+                        <a v-bind:href="'/administracja/export/all'" class="btn btn-sm btn-success">Export</a>
+                    </div>
+                    <div class="col text-right">
+                        <a v-bind:href="'/administracja/export/winners'" class="btn btn-sm btn-success">Export zwycięzców</a>
                     </div>
                     <div class="col text-right">
                         <a v-bind:href="'/administracja/all'" class="btn btn-sm btn-primary">Wszyscy</a>

@@ -41,6 +41,10 @@ Route::name('admin.')->prefix('administracja')->group(function () {
         Route::name('mail.')->prefix('mail')->group(function () {
             Route::get('/show/{mail}', [\App\Http\Controllers\Admin\SendMailController::class, 'show'])->name('show');
         });
+        Route::name('export.')->prefix('export')->group(function () {
+            Route::get('/all', [\App\Http\Controllers\Admin\ExportController::class, 'all'])->name('all');
+            Route::get('/winners', [\App\Http\Controllers\Admin\ExportController::class, 'winners'])->name('winners');
+        });
 
     });
 });
