@@ -6,8 +6,10 @@
             <span v-else>Brak</span>
         </th>
         <th scope="row">
-            <span v-if="prize == 1" class="text-green">Nagroda I</span>
-            <span v-else-if="prize == 2" class="text-green">Nagroda II</span>
+            <span v-if="prize == 1" class="text-green">Nagroda Główna</span>
+            <span v-else-if="prize == 2" class="text-green">Nagroda I</span>
+            <span v-else-if="prize == 3" class="text-green">Nagroda II</span>
+            <span v-else-if="prize == 4" class="text-green">Nagroda III</span>
             <span v-else>Brak</span>
         </th>
         <th scope="row">
@@ -26,7 +28,7 @@
             {{ created_at }}
         </td>
         <td>
-            <a class="btn-sm btn-primary" v-bind:href="'/administracja/show/'+id">Szczegóły</a>
+            <a class="btn-sm btn-primary" v-bind:href="'/administracja/register/show/'+id">Szczegóły</a>
         </td>
 
     </tr>

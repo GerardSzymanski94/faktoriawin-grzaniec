@@ -34,10 +34,16 @@ Route::name('admin.')->prefix('administracja')->group(function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\RegisterController::class, 'index']);
-        Route::get('/show/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'show'])->name('show');
-        Route::get('/winner/{register}/{prize}', [\App\Http\Controllers\Admin\RegisterController::class, 'winner'])->name('winner');
-        Route::get('/winners', [\App\Http\Controllers\Admin\RegisterController::class, 'winners'])->name('winners');
         Route::get('/home', [AdminController::class, 'home'])->name('home');
+
+        Route::name('register.')->prefix('register')->group(function () {
+            Route::get('/show/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'show'])->name('show');
+            Route::get('/winner/{register}/{prize}', [\App\Http\Controllers\Admin\RegisterController::class, 'winner'])->name('winner');
+            Route::get('/winners', [\App\Http\Controllers\Admin\RegisterController::class, 'winners'])->name('winners');
+            Route::get('/undowinner/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'undoWinner'])->name('undowinner');
+            Route::get('/sendmail/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'sendWinnerEmail'])->name('sendmail');
+        });
+
         Route::name('mail.')->prefix('mail')->group(function () {
             Route::get('/show/{mail}', [\App\Http\Controllers\Admin\SendMailController::class, 'show'])->name('show');
             Route::get('/all', [\App\Http\Controllers\Admin\SendMailController::class, 'all'])->name('all');

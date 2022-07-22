@@ -108,7 +108,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja/winners'">
+                        <a class="nav-link" :href="'/administracja/register/winners'">
                             <i class="ni ni-tv-2 text-primary"></i> Zwycięzcy
                         </a>
                     </li>

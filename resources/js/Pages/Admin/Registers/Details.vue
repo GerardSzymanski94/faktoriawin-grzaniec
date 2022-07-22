@@ -8,7 +8,7 @@
                     </div>
 
                     <div class="col text-right">
-                        <a href="javascript:history.back()" class="btn btn-sm btn-primary"> Wstecz</a>
+                        <a href="/administracja" class="btn btn-sm btn-primary"> Wstecz</a>
                     </div>
                     <!--<div class="col text-right">
                         <a :href="url+'/administracja/edit/'+register.id" class="btn btn-sm btn-success">Edytuj</a>
@@ -64,40 +64,52 @@
                     </tr>
 
 
-                    <tr v-if="register.mail_send==1">
-                        <td>Mail wysłany</td>
+                    <tr v-if="register.prize != null">
+                        <td>Oznaczony jako zwycięzca</td>
                         <td v-if="register.prize ==1 ">Nagroda główna</td>
                         <td v-if="register.prize ==2 ">Nagroda 1. stopnia</td>
                         <td v-if="register.prize ==3 ">Nagroda 2. stopnia</td>
                         <td v-if="register.prize ==4 ">Nagroda 3. stopnia</td>
+                        <td v-if="register.mail_send == 0">
+                            <a :href="'/administracja/register/undowinner/'+register.id" class="btn-primary btn-sm">
+                                Cofnij przyznanie nagrody</a>
+                        </td>
                     </tr>
                     <tr v-else>
                         <th scope="row">
-                            Oznacz jako zwycięzce i wyślij email
+                            Oznacz jako zwycięzce
                         </th>
                         <td>
-                            <a :href="'/administracja/winner/'+register.id+'/1'" class="btn-primary btn-sm">Nagroda
+                            <a :href="'/administracja/register/winner/'+register.id+'/1'" class="btn-primary btn-sm">Nagroda
                                 Główna</a>
                         </td>
                         <td>
-                            <a :href="'/administracja/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda I
+                            <a :href="'/administracja/register/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda I
                                 stopnia</a>
                         </td>
                         <td>
-                            <a :href="'/administracja/winner/'+register.id+'/3'" class="btn-primary btn-sm">Nagroda
+                            <a :href="'/administracja/register/winner/'+register.id+'/3'" class="btn-primary btn-sm">Nagroda
                                 II
                                 stopnia</a>
                         </td>
                         <td>
-                            <a :href="'/administracja/winner/'+register.id+'/4'" class="btn-primary btn-sm">Nagroda
+                            <a :href="'/administracja/register/winner/'+register.id+'/4'" class="btn-primary btn-sm">Nagroda
                                 III
                                 stopnia</a>
                         </td>
-                        <td v-if="register.mail_send==2">
-                            Nastąpił problem przy próbie wysyłki maila. Spróbuj ponownie
+                    </tr>
+                    <tr v-if="(register.mail_send==0 || register.mail_send==2)  && register.prize!=null">
+                        <td>Wyślij email</td>
+                        <td>
+                            <a :href="'/administracja/register/sendmail/'+register.id" class="btn-primary btn-sm">Wyślij</a>
                         </td>
                     </tr>
 
+                    <tr v-if="register.mail_send != 0">
+                        <td>Mail wysłany</td>
+                        <td v-if="register.mail_send == 1"> <span class="text-green">Mail wysłany prawidłowo</span> </td>
+                        <td v-if="register.mail_send == 2"> <span class="text-red">Nie udało się wysłać maila, spróbuj ponownie</span> </td>
+                    </tr>
 
                     </tbody>
                 </table>
@@ -208,7 +220,7 @@
                             {{ mail.subject }}
                         </td>
                         <td>
-                            <a :href="'/administracja/mail/show/'+mail.id" class="btn btn-primary" target="_blank">PODGLĄD</a>
+                            <a :href="'/administracja/mail/show/'+mail.id" class="btn btn-primary">PODGLĄD</a>
                         </td>
                     </tr>
 
