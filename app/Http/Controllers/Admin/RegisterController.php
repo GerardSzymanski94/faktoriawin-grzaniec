@@ -48,6 +48,24 @@ class RegisterController extends Controller
         return redirect()->back();
     }
 
+    public function confirm(Register $register)
+    {
+        $register->update([
+            'status' => 3,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function rejected(Register $register)
+    {
+        $register->update([
+            'status' => 4,
+        ]);
+
+        return redirect()->back();
+    }
+
     public function undoWinner(Register $register)
     {
         $register->update([

@@ -84,7 +84,8 @@
                                 Główna</a>
                         </td>
                         <td>
-                            <a :href="'/administracja/register/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda I
+                            <a :href="'/administracja/register/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda
+                                I
                                 stopnia</a>
                         </td>
                         <td>
@@ -102,21 +103,23 @@
                     <tr v-if="(register.mail_send==0 || register.mail_send==2)  && register.prize!=null">
                         <td>Wyślij email</td>
                         <td>
-                            <a :href="'/administracja/register/sendmail/'+register.id" class="btn-primary btn-sm">Wyślij</a>
+                            <a :href="'/administracja/register/sendmail/'+register.id"
+                               class="btn-primary btn-sm">Wyślij</a>
                         </td>
                     </tr>
 
                     <tr v-if="register.mail_send != 0">
                         <td>Mail wysłany</td>
-                        <td v-if="register.mail_send == 1"> <span class="text-green">Mail wysłany prawidłowo</span> </td>
-                        <td v-if="register.mail_send == 2"> <span class="text-red">Nie udało się wysłać maila, spróbuj ponownie</span> </td>
+                        <td v-if="register.mail_send == 1"><span class="text-green">Mail wysłany prawidłowo</span></td>
+                        <td v-if="register.mail_send == 2"><span class="text-red">Nie udało się wysłać maila, spróbuj ponownie</span>
+                        </td>
                     </tr>
 
                     </tbody>
                 </table>
 
             </div>
-            <div class="table-responsive" v-if="register.bill_photo != null">
+            <div class="table-responsive" v-if="register.status >= 2">
                 <!-- Projects table -->
                 <table class="table align-items-center table-flush">
                     <thead class="thead-light">
@@ -127,7 +130,7 @@
                     </thead>
                     <tbody>
 
-                    <tr v-if="register.bill_photo != null">
+                    <tr v-if="register.status >= 2">
                         <td>
                             Zdjęcie paragonu
                         </td>
@@ -135,14 +138,38 @@
                             <img style="max-width: 100%" v-bind:src="this.url+'storage/'+register.bill_photo">
                         </td>
                     </tr>
-                    <tr v-if="register.bill_photo != null">
+                    <tr v-if="register.status == 2">
                         <td>
                             Akceptacja
                         </td>
                         <td>
-                            <a href="" class="btn-sm btn-primary">Zaakceptuj</a>
-                            <a href="" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
+                            <a :href="'/administracja/register/confirm/'+register.id" class="btn-sm btn-primary">Zaakceptuj</a>
+                            <a :href="'/administracja/register/reject/'+register.id" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
                         </td>
+                    </tr>
+                    <tr v-else-if="register.status == 3">
+                        <td>
+                            Potwierdzenie
+                        </td>
+                        <td>
+                            Potwierdzony jako zwycięzca
+                        </td>
+                        <td>
+                            <a :href="'/administracja/register/reject/'+register.id" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
+                        </td>
+
+                    </tr>
+                    <tr v-else-if="register.status == 4">
+                        <td>
+                            Potwierdzenie
+                        </td>
+                        <td>
+                            Odrzucony
+                        </td>
+                        <td>
+                            <a :href="'/administracja/register/confirm/'+register.id" class="btn-sm btn-primary">Zaakceptuj</a>
+                        </td>
+
                     </tr>
                     <tr v-if="register.name != null">
                         <td>
@@ -178,24 +205,7 @@
                             {{ register.account_number }}
                         </td>
                     </tr>
-                    <tr v-else-if="register.status == 1">
-                        <td>
-                            Potwierdź
-                        </td>
-                        <td>
-                            Potwierdzony jako zwycięzca
-                        </td>
 
-                    </tr>
-                    <tr v-else-if="register.status ==2">
-                        <td>
-                            Potwierdź
-                        </td>
-                        <td>
-                            Odrzucony
-                        </td>
-
-                    </tr>
 
                     </tbody>
                 </table>

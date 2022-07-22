@@ -42,6 +42,8 @@ Route::name('admin.')->prefix('administracja')->group(function () {
             Route::get('/winners', [\App\Http\Controllers\Admin\RegisterController::class, 'winners'])->name('winners');
             Route::get('/undowinner/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'undoWinner'])->name('undowinner');
             Route::get('/sendmail/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'sendWinnerEmail'])->name('sendmail');
+            Route::get('/confirm/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'confirm'])->name('confirm');
+            Route::get('/reject/{register}', [\App\Http\Controllers\Admin\RegisterController::class, 'rejected'])->name('reject');
         });
 
         Route::name('mail.')->prefix('mail')->group(function () {
