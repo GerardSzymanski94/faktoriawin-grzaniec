@@ -1,9 +1,7 @@
 <template>
     <tr>
         <th scope="row">
-            <span v-if="status == 1" class="text-red">Niepotwierdzony</span>
-            <span v-else-if="status == 2" class="text-green">Potwierdzony</span>
-            <span v-else>Brak</span>
+            <status v-bind:prize="prize" v-bind:status="status"></status>
         </th>
         <th scope="row">
             <span v-if="prize == 1" class="text-green">Nagroda Główna</span>
@@ -35,7 +33,12 @@
 </template>
 
 <script>
+import Status from './Status';
+
 export default {
+    components: {
+        Status
+    },
     props: {
         email: String,
         phone: String,

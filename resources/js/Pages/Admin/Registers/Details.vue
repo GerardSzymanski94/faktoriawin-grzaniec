@@ -98,6 +98,7 @@
                                 stopnia</a>
                         </td>
                     </tr>
+
                     <tr v-if="(register.mail_send==0 || register.mail_send==2)  && register.prize!=null">
                         <td>Wyślij email</td>
                         <td>

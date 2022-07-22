@@ -74,6 +74,9 @@ class RegisterController extends Controller
         try {
             Mail::to($register->email)->send(new WinnerMail($register));
             $mail->update(['status' => 1]);
+            $register->update([
+                'status' => 1,
+            ]);
         } catch (\Exception $ex) {
             $register->update(['mail_send' => 2]);
             $mail->update(['status' => 2]);
