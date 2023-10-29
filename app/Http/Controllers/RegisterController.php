@@ -137,4 +137,30 @@ class RegisterController extends Controller
         }
         return $randomString;
     }
+
+    public function winnerForm($code) {
+        $register = Register::whereCode($code)->firstOrFail();
+
+        return view('forms.winner', compact('register'));
+    }
+
+    public function storeWinnerForm(Request $request) {
+        $register = Register::whereCode($request->code)->firstOrFail();
+
+       /* if ($register->email != $request->email) {
+            return redirect()->back();
+        }*/
+
+        $register->update([
+           // 'name' => $request->name,
+           // 'lastname' => $request->lastname,
+            'street' => $request->street ?? null,
+            'zip_code' => $request->zip_code ?? null,
+            'city' => $request->city ?? null,
+            'phone' => $request->phone ?? null,
+            'confirm_data' => 1,
+            'status' => 2,
+        ]);
+        return redirect()->back();
+    }
 }

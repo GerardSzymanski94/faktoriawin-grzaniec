@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/store', [ApiController::class, 'store'])->name('store');
+Route::post('/contact', [ApiController::class, 'contact'])->name('contact');

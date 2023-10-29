@@ -26,6 +26,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 Route::name('register.')->prefix('register')->group(function () {
     Route::post('/store', [RegisterController::class, 'store'])->name('store');
+    Route::get('/winner/{code}', [RegisterController::class, 'winnerForm'])->name('winner');
+    Route::post('/winner-store', [RegisterController::class, 'storeWinnerForm'])->name('store-winner-form');
+
 });
 Route::name('mail.')->prefix('mail')->group(function () {
     Route::post('/contact', [SendMailController::class, 'contact'])->name('contact');

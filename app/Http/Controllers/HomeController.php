@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Register;
 use App\Models\SiteConfig;
 use Carbon\Carbon;
 use Illuminate\Foundation\Application;
@@ -21,6 +22,10 @@ class HomeController extends Controller
         if ($now < SiteConfig::start()->value || $now > SiteConfig::stop()->value) {
             $showForm = false;
         }
-        return view('index', compact('showForm'));
+
+        $winners1 = Register::where('status', 3)->where('prize', 1)->get() ?? [];
+        $winners2 = Register::where('status', 3)->where('prize', 2)->get() ?? [];
+
+        return view('index', compact('showForm', 'winners2', 'winners1'));
     }
 }

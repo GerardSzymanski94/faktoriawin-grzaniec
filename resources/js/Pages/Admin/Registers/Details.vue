@@ -37,7 +37,7 @@
                             {{ register.email }}
                         </td>
                     </tr>
-                    <tr>
+<!--                    <tr>
                         <th scope="row">
                             Numer paragonu
                         </th>
@@ -53,7 +53,7 @@
                         <td>
                             {{ register.bill_date }}
                         </td>
-                    </tr>
+                    </tr>-->
                     <tr>
                         <th scope="row">
                             Odpowiedź
@@ -62,7 +62,14 @@
                             {{ register.description }}
                         </td>
                     </tr>
-
+                    <tr>
+                        <td>
+                            Zdjęcie paragonu
+                        </td>
+                        <td>
+                            <img style="max-width: 100%" v-bind:src="this.url+'/storage/'+register.bill_photo">
+                        </td>
+                    </tr>
 
                     <tr v-if="register.prize != null">
                         <td>Oznaczony jako zwycięzca</td>
@@ -81,22 +88,11 @@
                         </th>
                         <td>
                             <a :href="'/administracja/register/winner/'+register.id+'/1'" class="btn-primary btn-sm">Nagroda
-                                Główna</a>
+                                - Kubek</a>
                         </td>
                         <td>
                             <a :href="'/administracja/register/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda
-                                I
-                                stopnia</a>
-                        </td>
-                        <td>
-                            <a :href="'/administracja/register/winner/'+register.id+'/3'" class="btn-primary btn-sm">Nagroda
-                                II
-                                stopnia</a>
-                        </td>
-                        <td>
-                            <a :href="'/administracja/register/winner/'+register.id+'/4'" class="btn-primary btn-sm">Nagroda
-                                III
-                                stopnia</a>
+                                - Czapka</a>
                         </td>
                     </tr>
 
@@ -130,14 +126,7 @@
                     </thead>
                     <tbody>
 
-                    <tr v-if="register.status >= 2">
-                        <td>
-                            Zdjęcie paragonu
-                        </td>
-                        <td>
-                            <img style="max-width: 100%" v-bind:src="this.url+'storage/'+register.bill_photo">
-                        </td>
-                    </tr>
+
                     <tr v-if="register.status == 2">
                         <td>
                             Akceptacja

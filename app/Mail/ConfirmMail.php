@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WinnerMail extends Mailable
+class ConfirmMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class WinnerMail extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'))->subject('Gratulujemy Wygranej!')->view('mails.winner' . $this->register->prize)->with(['register'=>$this->register]);
+        return $this->from(env('MAIL_FROM_ADDRESS'))->subject('Potwierdzenie zgłoszenia')->view('mails.confirm');
     }
 }

@@ -4,41 +4,100 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Mail\ConfirmMail;
+use App\Mail\ContactMail;
 use App\Models\InstantReward;
 use App\Models\Register;
+use App\Repositories\MailsRepository;
 use App\Repositories\RegisterRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
-    public function store(RegisterRequest $request)
+    public function store(Request $request)
     {
-        if (!$this->checkCaptcha($request->input('h-captcha-response'))) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'name' => 'required',
+            'lastname' => 'required',
+            'answer' => 'required',
+            'bill_photo' => 'required',
+            'aggrement' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status'=>'ERROR',
+                'message' => 'Uzupełnij wszystkie pola, dodaj zdjęcie paragonu i zaakceptuj regulamin'
+            ]);
+        }
+
+        if(Str::length($request->answer) > 400){
+            return response()->json([
+                'status'=>'ERROR',
+                'message' => 'Odpowiedź na pytanie może mieć max 400 znaków'
+            ]);
+        }
+
+
+      /*  if (!$this->checkCaptcha($request->input('h-captcha-response'))) {
             return response()->json([
                 'status'=>'ERROR',
                 'message' => 'Zaznacz pole captcha'
             ]);
-        }
-        if (!$this->checkBill($request->bill_date, $request->bill_number)) {
+        }*/
+       /* if (!$this->checkBill($request->bill_date, $request->bill_number)) {
             return response()->json([
                 'status'=>'ERROR',
                 'message' => 'Paragon został już użyty'
             ]);
-        }
+        }*/
 
         try {
             $repo = new RegisterRepository();
             $register = $repo->create([
                 'email' => $request->email,
-                'bill_number' => $request->bill_number,
-                'bill_date' => $request->bill_date,
+                'name' => $request->name,
+                'lastname' => $request->lastname,
+                'description' => $request->answer,
                 'ip_address' => $this->getIpAddress(),
             ]);
+            if ($request->hasFile('bill_photo')) {
+                $file = $request->bill_photo;
+                $ph = $file->store('/documents/' . $register->id . '/', 'public');
+
+                $register->bill_photo = $ph;
+
+                $register->save();
+
+            }
         } catch (\Exception $ex) {
             return response()->json([
                 'status'=>'ERROR',
                 'message' => 'Nie udało się zapisać zgłoszenia'
+            ]);
+        }
+
+        try{
+            $repo = new MailsRepository();
+            $mail = $repo->create([
+                'register_id' => $register->id,
+                'email' => $register->email,
+                'subject' => 'Potwierdzenie zgłoszenia',
+                'message' => view('mails.confirm')->render(),
+                'type' => 2]);
+
+            Mail::to($register->email)->send(new ConfirmMail($register));
+            $mail->update(['status' => 1]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status'=>'ERROR',
+                'message' => 'Zgłoszenie zostało zapisane ale nie udało się wysłać maila z potwierdzeniem.'
             ]);
         }
 
@@ -108,4 +167,40 @@ class ApiController extends Controller
         }
         return $randomString;
     }
+
+    public function contact(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status'=>'ERROR',
+                'message' => 'Uzupełnij wszystkie pola'
+            ]);
+        }
+
+        $repo = new MailsRepository();
+        $mail = $repo->create(['email' => $request->email, 'subject' => 'Formularz kontaktowy', 'message' => $request->message, 'type' => 1, 'ip_address' => $this->getIpAddress()]);
+
+        try {
+            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMail(['email' => $request->email, 'message' => $request->message]));
+            $mail->update(['status' => 1]);
+        } catch (\Exception $ex) {
+            $mail->update(['status' => 2]);
+            return response()->json([
+                'status'=>'ERROR',
+                'message' => 'Nie udało się wysłać formularza. Spróbuj ponownie'
+            ]);
+        }
+
+        return response()->json([
+            'status'=>'OK',
+            'message' => 'Twoje pytanie zostało wysłane!'
+        ]);
+    }
+
+
 }

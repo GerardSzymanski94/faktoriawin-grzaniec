@@ -86,7 +86,7 @@ class RegisterController extends Controller
             'register_id' => $register->id,
             'email' => $register->email,
             'subject' => 'Gratulujemy wygranej',
-            'message' => view('mails.winner' . $register->prize)->render(),
+            'message' => view('mails.winner' . $register->prize)->with(['register'=>$register])->render(),
             'type' => 2]);
 
         try {
