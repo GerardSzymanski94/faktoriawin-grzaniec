@@ -272,6 +272,7 @@
                         <input name="bill_photo" type="file" accept=".jpg, .jpeg" id="paragon" />
                     </label>
                 </div>
+                <span class="input-file--message"></span>
                 <!-- <span class="text-danger text-danger--file"
                   >To pole jest wymagane!</span
                 > -->

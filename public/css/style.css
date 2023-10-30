@@ -811,6 +811,17 @@ rect {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+.input-file--message {
+  font-size: 1.6rem;
+  display: block;
+  margin: 0.5rem 0 1rem 0;
+  font-family: var(--acumin);
+  letter-spacing: 0.2px;
+  color: green;
+}
+.input-checkbox {
+  margin-top: 23px;
+}
 
 /* ZWYCIEZCY */
 .zwyciezcy {
@@ -1198,6 +1209,9 @@ rect {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .input-checkbox {
+    margin-top: 15px;
   }
 }
 
