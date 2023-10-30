@@ -78,7 +78,7 @@
                         <td v-if="register.prize ==3 ">Nagroda 2. stopnia</td>
                         <td v-if="register.prize ==4 ">Nagroda 3. stopnia</td>
                         <td v-if="register.mail_send == 0">
-                            <a :href="'/administracja/register/undowinner/'+register.id" class="btn-primary btn-sm">
+                            <a :href="url+'/administracja/register/undowinner/'+register.id" class="btn-primary btn-sm">
                                 Cofnij przyznanie nagrody</a>
                         </td>
                     </tr>
@@ -87,11 +87,11 @@
                             Oznacz jako zwycięzce
                         </th>
                         <td>
-                            <a :href="'/administracja/register/winner/'+register.id+'/1'" class="btn-primary btn-sm">Nagroda
+                            <a :href="url+'/administracja/register/winner/'+register.id+'/1'" class="btn-primary btn-sm">Nagroda
                                 - Kubek</a>
                         </td>
                         <td>
-                            <a :href="'/administracja/register/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda
+                            <a :href="url+'/administracja/register/winner/'+register.id+'/2'" class="btn-primary btn-sm">Nagroda
                                 - Czapka</a>
                         </td>
                     </tr>
@@ -99,7 +99,7 @@
                     <tr v-if="(register.mail_send==0 || register.mail_send==2)  && register.prize!=null">
                         <td>Wyślij email</td>
                         <td>
-                            <a :href="'/administracja/register/sendmail/'+register.id"
+                            <a :href="url+'/administracja/register/sendmail/'+register.id"
                                class="btn-primary btn-sm">Wyślij</a>
                         </td>
                     </tr>
@@ -132,8 +132,8 @@
                             Akceptacja
                         </td>
                         <td>
-                            <a :href="'/administracja/register/confirm/'+register.id" class="btn-sm btn-primary">Zaakceptuj</a>
-                            <a :href="'/administracja/register/reject/'+register.id" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
+                            <a :href="url+'/administracja/register/confirm/'+register.id" class="btn-sm btn-primary">Zaakceptuj</a>
+                            <a :href="url+'/administracja/register/reject/'+register.id" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
                         </td>
                     </tr>
                     <tr v-else-if="register.status == 3">
@@ -144,7 +144,7 @@
                             Potwierdzony jako zwycięzca
                         </td>
                         <td>
-                            <a :href="'/administracja/register/reject/'+register.id" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
+                            <a :href="url+'/administracja/register/reject/'+register.id" class="btn-sm btn-danger" style="margin-left: 40px">Odrzuć</a>
                         </td>
 
                     </tr>
@@ -156,7 +156,7 @@
                             Odrzucony
                         </td>
                         <td>
-                            <a :href="'/administracja/register/confirm/'+register.id" class="btn-sm btn-primary">Zaakceptuj</a>
+                            <a :href="url+'/administracja/register/confirm/'+register.id" class="btn-sm btn-primary">Zaakceptuj</a>
                         </td>
 
                     </tr>
@@ -220,7 +220,7 @@
                             {{ mail.subject }}
                         </td>
                         <td>
-                            <a :href="'/administracja/mail/show/'+mail.id" class="btn btn-primary">PODGLĄD</a>
+                            <a :href="url+'/administracja/mail/show/'+mail.id" class="btn btn-primary">PODGLĄD</a>
                         </td>
                     </tr>
 
