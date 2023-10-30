@@ -1108,10 +1108,12 @@ rect {
     top: 90px;
   }
   body {
-    background-image: url("/assets/img/bg-sm.webp");
+    /* background-image: url("/assets/img/bg-sm.webp");
     background-attachment: unset;
     background-repeat: no-repeat;
-    background-size: unset;
+    background-size: unset; */
+    background-image: unset;
+
   }
   header {
     position: relative;
@@ -1212,6 +1214,27 @@ rect {
   }
   .input-checkbox {
     margin-top: 15px;
+  }
+  .bg-2 {
+    background-image: url("/assets/img/test.png"); 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: repeat;
+    z-index: -2;
+  }
+  .bg-1 {
+    background-image: url("/assets/img/bg-sm.webp"); 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    background-attachment: fixed;
+    background-position: center var(--header-height);
+    background-size: cover;
+    background-attachment: unset;
+    background-repeat: no-repeat;
+    background-size: unset;
   }
 }
 
