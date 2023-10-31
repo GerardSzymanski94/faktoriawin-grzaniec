@@ -65,7 +65,7 @@
                 <li><a href="#cotrzebazrobic">Co trzeba zrobić</a></li>
                 <li><a href="#formularz">Formularz</a></li>
                 <li><a href="#listazwyciezcow">Lista zwycięzców</a></li>
-                <li><a href="#regulamin">Regulamin</a></li>
+                <li><a href="/Regulamin.pdf" target="_blank">Regulamin</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
         </nav>
@@ -311,7 +311,7 @@
                         <input type="checkbox" id="zgoda" name="aggrement" />
                         <span class="checkmark"></span>
                         <span class="input-content"
-                        >Oświadczam, że zapoznałem(-am) się z REGULAMINEM i akceptuję
+                        >Oświadczam, że zapoznałem(-am) się z <a href="/Regulamin.pdf" target="_blank">REGULAMINEM </a>i akceptuję
                   wszystkie zawarte w nim warunki, w tym potwierdzam, iż znane
                   są mi informacje dotyczące przetwarzania moich danych
                   osobowych.</span
@@ -355,7 +355,7 @@
 </div>
 
 @endif
-<div class="spacer-md">
+<div class="spacer-md" id="kontakt">
     <form id="contact_form" class="formularz kontakt">
         <h2>Kontakt</h2>
         <!-- Klasy do włączenia wiadomości po wysłaniu formularza (dla poniższego diva):
