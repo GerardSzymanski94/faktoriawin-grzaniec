@@ -28,9 +28,10 @@ const init = () => {
 
         const getFileName = (e) => {
             const files = e.target.files;
-            const fileName = files[0].name;
+            const name = files[0].name;
+            const fileName = name.length > 50 ? name.slice(0, 50) + " ..." : name;
             fileMessage.textContent = fileName;
-        };
+          };
 
         file.addEventListener("change", getFileName);
     };
