@@ -37,7 +37,7 @@
                             {{ register.email }}
                         </td>
                     </tr>
-<!--                    <tr>
+                    <tr>
                         <th scope="row">
                             Numer paragonu
                         </th>
@@ -53,7 +53,7 @@
                         <td>
                             {{ register.bill_date }}
                         </td>
-                    </tr>-->
+                    </tr>
                     <tr>
                         <th scope="row">
                             Odpowiedź

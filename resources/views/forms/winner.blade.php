@@ -27,13 +27,13 @@
 
                 <div class="form__group">
                     <label class="form__label">Imię:</label>
-                    <input class="form__input" type="text" name="name" placeholder="Imię" value="{{ $register->name }}" disabled>
+                    <input class="form__input" type="text" name="name" placeholder="Imię" value="{{ $register->name }}" required>
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">Nazwisko:</label>
                     <input class="form__input" type="text" name="lastname" placeholder="Nazwisko"
-                           value="{{ $register->lastname }}" disabled>
+                           value="{{ $register->lastname }}" required>
                 </div>
 
                 <div class="form__group">

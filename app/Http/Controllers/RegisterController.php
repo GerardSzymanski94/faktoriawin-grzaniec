@@ -152,8 +152,8 @@ class RegisterController extends Controller
         }*/
 
         $register->update([
-           // 'name' => $request->name,
-           // 'lastname' => $request->lastname,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
             'street' => $request->street ?? null,
             'zip_code' => $request->zip_code ?? null,
             'city' => $request->city ?? null,

@@ -186,7 +186,7 @@
         </div>
     </div>
 </div>
-<div class="spacer-md">
+<div class="spacer-md"  id="formularz">
     <form id="application" class="formularz">
         <h2>Formularz</h2>
         <!-- Klasy do włączenia wiadomości po wysłaniu formularza (dla poniższego diva):
@@ -243,18 +243,18 @@
             </div>
             <div class="formularz-fields">
                 <div>
-                    <label for="name">Imię</label>
-                    <input type="text" name="name" id="name" />
-                    <!-- <span class="text-danger">To pole jest wymagane!</span> -->
-                </div>
-                <div>
-                    <label for="lastname">Nazwisko</label>
-                    <input type="text" name="lastname" id="lastname" />
-                    <!-- <span class="text-danger">To pole jest wymagane!</span> -->
-                </div>
-                <div>
                     <label for="email">E-mail</label>
                     <input type="email" name="email" id="email" />
+                    <!-- <span class="text-danger">To pole jest wymagane!</span> -->
+                </div>
+                <div>
+                    <label for="bill_number">Numer dowodu zakupu</label>
+                    <input type="text" name="bill_number" id="bill_number" />
+                    <!-- <span class="text-danger">To pole jest wymagane!</span> -->
+                </div>
+                <div>
+                    <label for="bill_date">Data dokonania zakupu</label>
+                    <input type="date" name="bill_date" id="bill_date" min="2023-11-01"/>
                     <!-- <span class="text-danger">To pole jest wymagane!</span> -->
                 </div>
                 <div>
