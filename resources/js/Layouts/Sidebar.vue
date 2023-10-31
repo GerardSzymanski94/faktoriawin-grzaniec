@@ -93,27 +93,27 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja'">
+                        <a class="nav-link" :href="url+'/administracja'">
                             <i class="ni ni-tv-2 text-primary"></i> Zgłoszenia
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja/mail/all'">
+                        <a class="nav-link" :href="url+'/administracja/mail/all'">
                             <i class="ni ni-tv-2 text-primary"></i> Wysłane maile
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja/stats'">
+                        <a class="nav-link" :href="url+'/administracja/stats'">
                             <i class="ni ni-tv-2 text-primary"></i> Statystyki
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja/register/winners'">
+                        <a class="nav-link" :href="url+'/administracja/register/winners'">
                             <i class="ni ni-tv-2 text-primary"></i> Zwycięzcy
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" :href="'/administracja/config'">
+                        <a class="nav-link" :href="url+'/administracja/config'">
                             <i class="ni ni-tv-2 text-primary"></i> Konfiguracja konkursu
                         </a>
                     </li>

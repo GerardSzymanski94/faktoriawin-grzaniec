@@ -23,8 +23,8 @@ class ApiController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'name' => 'required',
-            'lastname' => 'required',
+            'bill_number' => 'required',
+            'bill_date' => 'required',
             'answer' => 'required',
             'bill_photo' => 'required',
             'aggrement' => 'required',
@@ -37,10 +37,10 @@ class ApiController extends Controller
             ]);
         }
 
-        if(Str::length($request->answer) > 400){
+        if(Str::length($request->answer) > 300){
             return response()->json([
                 'status'=>'ERROR',
-                'message' => 'Odpowiedź na pytanie może mieć max 400 znaków'
+                'message' => 'Odpowiedź na pytanie może mieć max 300 znaków - Twoja odpowiedź ma '.Str::length($request->answer)
             ]);
         }
 
@@ -51,19 +51,18 @@ class ApiController extends Controller
                 'message' => 'Zaznacz pole captcha'
             ]);
         }*/
-       /* if (!$this->checkBill($request->bill_date, $request->bill_number)) {
+        if (!$this->checkBill($request->bill_date, $request->bill_number)) {
             return response()->json([
                 'status'=>'ERROR',
                 'message' => 'Paragon został już użyty'
             ]);
-        }*/
-
+        }
         try {
             $repo = new RegisterRepository();
             $register = $repo->create([
                 'email' => $request->email,
-                'name' => $request->name,
-                'lastname' => $request->lastname,
+                'bill_date' => $request->bill_date,
+                'bill_number' => $request->bill_number,
                 'description' => $request->answer,
                 'ip_address' => $this->getIpAddress(),
             ]);

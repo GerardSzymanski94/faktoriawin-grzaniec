@@ -26,7 +26,7 @@
             {{ created_at }}
         </td>
         <td>
-            <a class="btn-sm btn-primary" v-bind:href="'/administracja/register/show/'+id">Szczegóły</a>
+            <a class="btn-sm btn-primary" v-bind:href="url+'/administracja/register/show/'+id">Szczegóły</a>
         </td>
 
     </tr>
